@@ -52,7 +52,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("SansSerif", 2, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 153, 0));
         jLabel1.setText("              -CADASTRO DO PACIENTE-");
-        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel2.setText("NOME COMPLETO:");
@@ -84,7 +84,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         JButton_Executar.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         JButton_Executar.setForeground(new java.awt.Color(0, 102, 0));
         JButton_Executar.setText("EXECUTAR");
-        JButton_Executar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        JButton_Executar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         JButton_Executar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JButton_ExecutarActionPerformed(evt);
@@ -146,11 +146,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(JComboBox_Sexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(30, 30, 30)
                 .addComponent(JButton_Executar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
 
         pack();
@@ -171,15 +171,25 @@ public class TelaPrincipal extends javax.swing.JFrame {
         int peso = 0;
         float altura = 0;
         String sexo = "";
+        float imc = 0;
         
         nomeCompleto = JTextField_NomeCompleto.getText();
         //Convertendo string para Int;
         peso = Integer.parseInt(JTextField_Peso.getText());
         //Convertendo string para Float;
         altura = Float.parseFloat(JTextField_Altura.getText());
+        //Convertendo JBox para booleano;
+        sexo = JComboBox_Sexo.getSelectedItem().toString();
         
         String saida = "CLINICA GYN\n";
-        saida += "DADOS DO PACIENTE\n";
+        if(sexo == "MASCULINO"){
+            imc = peso/(altura*altura);
+        } else {
+            imc = peso/(altura*altura);
+        }
+        
+        saida += "DADOS DO PACIENTE: "+ nomeCompleto +"\n";
+        saida += "      IMC: "+ imc;
         
         JTextArea_Saida.setText(saida);
         
