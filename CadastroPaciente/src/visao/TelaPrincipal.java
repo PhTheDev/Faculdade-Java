@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package visao;
-
+import entidades.Paciente;
 /**
  *
  * @author puc
@@ -186,29 +186,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void JButton_ExecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButton_ExecutarActionPerformed
         // TODO add your handling code here:
         
-        String nomeCompleto = "";
-        int peso = 0;
-        float altura = 0;
-        String sexo = "";
-        float imc = 0;
+        Paciente p1 = new Paciente();
         
-        nomeCompleto = JTextField_NomeCompleto.getText();
-        //Convertendo string para Int;
-        peso = Integer.parseInt(JTextField_Peso.getText());
-        //Convertendo string para Float;
-        altura = Float.parseFloat(JTextField_Altura.getText());
-        //Convertendo JBox para booleano;
-        sexo = JComboBox_Sexo.getSelectedItem().toString();
+        p1.nomeCompleto = JTextField_NomeCompleto.getText();
+        p1.peso = Integer.parseInt(JTextField_Peso.getText());
+        p1.altura = Float.parseFloat(JTextField_Altura.getText());
+        p1.sexo = JComboBox_Sexo.getSelectedItem().toString();
         
         String saida = "CLINICA GYN\n";
-        if(sexo == "MASCULINO"){
-            imc = peso/(altura*altura);
-        } else {
-            imc = peso/(altura*altura);
-        }
-        
-        saida += "DADOS DO PACIENTE: "+ nomeCompleto +"\n";
-        saida += "      IMC: "+ imc;
+        saida += "DADOS DO PACIENTE: ";
+        saida += "\nNome Completo: " + p1.nomeCompleto + "\n";
+        saida += "Peso: " + p1.peso + "\n";
+        saida += "Altura: " + p1.altura + "\n";
+        saida += "Sexo: " + p1.sexo + "\n";
+        saida += "IMC: " + p1.calcularIMC() + "\n";
         
         JTextArea_Saida.setText(saida);
         
